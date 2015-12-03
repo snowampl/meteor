@@ -1,0 +1,12 @@
+.photo-list{
+	width: 50%;
+	border:20px solid gray;
+}
+.person{
+	width: 100%;
+	border:20px solid gray;
+}
+.bigImage{
+	width: 150%;
+	border:10px solid gray;
+}

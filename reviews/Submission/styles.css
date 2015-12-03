@@ -1,0 +1,67 @@
+
+/* 
+   This is the css for the friend thumbnails
+   They are small boxes that show the first
+   few lines of a friend. 
+   There are several bits of css to make sure that they 
+   properly.
+*/ 
+
+
+body {
+ 
+    background-image: url("bgrounFarm.jpg"); /* creates background image */
+    background-position: center center; /* positions background image */
+    background-repeat: no-repeat; /* repeat background image */
+    background-size: cover; /* ensures resize  */
+    background-attachment: fixed; /* same as above */
+    
+    -webkit-background-size: cover; /* for IE */
+    -moz-background-size: cover; /* for mozilla */
+    -o-background-size: cover; /* for opera browser */
+}
+
+.friend-thumbnail {
+  margin-top: 10px;   /* add a margin to look nice */
+  white-space : pre;  /* preserve the original line breaks and spacing
+  						 (I need this because the content of the 
+  						 friend is just text not HTML, so normally
+  						 the line breaks would be ignored) */
+  overflow : hidden;  /* don't show a scroll bar when the text is
+                         too big to fit in the box (which it always 
+                         will be but we don't mind as it is just a 
+                         thumbnail) */
+  max-height: 50px;  /* make sure that the box doesn't get too big */
+  height : 50px;     /* even if the text is big */
+  border-radius: 1px;/* rounded corners */ 
+  border-color: ivory; /* border colors */ 
+
+  color: black;     /* font colors */ 
+  font-weight: bolder; /* fonts heavy */ 
+  font-style: italic; /* fonts italic */ 
+  opacity: .4;  /* slightly translucent  */   
+}
+
+#mainViewer {
+  margin-top: 10px;   /* create a margin on top of the box that's created - for main viewer information */
+  white-space : pre;   /* preserve the original line breaks (see above)*/
+  border-color: cornsilk; /* font border color */
+  color: black; /* font color  */
+  opacity: .4; /* translucent */
+    
+}
+
+
+
+h1{  /*Created for h1 tag */
+ 
+    border-style: solid; /* solid border */
+    border-width: 5px; /* width of the border */
+    border-color: ivory; /* color of the border */
+    font-weight: bolder; /* weight of the font */
+    font-style: italic; /* font style */
+    opacity: .4; /* translucent */
+}
+
+
+

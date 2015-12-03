@@ -1,0 +1,124 @@
+<html>
+	<head>
+	<title>Friend List</title>
+
+	<!-- include jquery, bootstrap and our stylesheet -->
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="script.js"></script>
+	
+	<link rel="stylesheet"
+		  type="text/css"
+		  href="bootstrap.css"
+	      />
+
+	<link rel="stylesheet"
+		  type="text/css"
+		  href="styles.css"
+	      />	
+
+        
+	</head>
+	<body>
+		
+	<div class="container">
+        
+        <div class="row">
+            <div class="col-md-12">
+            
+                <h1 id="info"><b><center>My Friend's Contact Information</center></b></h1>
+                
+            </div>
+        
+        </div>
+        
+		<!-- 
+			 we have 1 row that contains 2 columns
+		     one for the thumbnails and one for the 
+		     main reader view
+		-->
+		<div class="row">
+			<div class="col-md-3">
+				<!-- 
+					This is a list view that will 
+					contain all the friend thumbnails
+				-->
+				<ul class="list-group" id="friendlist">
+					<!--
+						The id contains the friend number, something 
+						we will use in the JS code
+						The class list-group-item is for bootstrap
+						and friend-thumbnail is for our code
+					-->
+            		<li id="friend0" class="list-group-item friend-thumbnail">Friend Number 1
+                    
+                        Name: Deer <img class="img-t" id="deer" src="deer.jpg" alt="Deer" style="width:30px;height:20px;">
+                        Address: 17 Ulumb Street Ulan Batur Mongolia
+                        Phone Number: +81-874658281
+                        Last Date: Aug 1, 1987
+                        Family Members: Crow, Tiger, Panda, Elephant
+                    
+                        
+                    </li>
+            		<li id="friend1" class="list-group-item friend-thumbnail">Friend Number 2
+                        
+                        Name: Tiger <img class="img-t" id="tiger" src="tiger.jpg" alt="Tiger" style="width:30px;height:20px;">
+                        Address: 25 Masai Mara Kenya
+                        Phone Number: +55-654-4542
+                        Last Date: Jan 23, 1996
+                        Family Members: Lion, Cheetah
+                    
+                    </li>
+            		<li id="friend2" class="list-group-item friend-thumbnail">Friend Number 3
+                       
+                        Name: Elephant <img class="img-t" id="elephant" src="elephant.jpg" alt="Elephant" style="width:30px;height:20px;">
+                        Address: 14 Dubare Estate, Mysore, Karnataka
+                        Phone Number: +91-876-8765
+                        Last Date Met: March 2, 2015
+                        Family Members: Baby Elephant
+                    
+                    </li>
+            		<li id="friend3" class="list-group-item friend-thumbnail">Friend Number 4
+                        
+                        Name: Giraffe <img class="img-t" id="giraffe" src="giraffe.jpg" alt="Giraffe" style="width:30px;height:20px;">
+                        Address: 987 Crosstown, South Africa
+                        Phone Number: +34-454-4334
+                        Last Date Met: 
+                        Family Members:
+                    
+                    </li>
+          		</ul>
+          	</div>
+
+          	<!-- 
+				This contains the main reader view 
+				that will show the whole friend. 
+				It is currently empty because we will 
+				fill in using JavaScript
+          	-->
+			<div class="col-md-9">
+				<!--
+					well is a bootstrap class for creating 
+					a nice container box
+					The id, mainViewer is for our use
+				-->
+				<div class="well" id="mainViewer">
+				</div>
+			</div>
+			
+		</div>
+		
+	</div>
+
+
+	</body>
+    
+
+    
+</html>
+
+
+
+
+
+
+

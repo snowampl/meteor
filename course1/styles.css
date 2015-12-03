@@ -1,0 +1,12 @@
+/* this is the comment for css */
+
+h1 {
+
+	background: #FF0000;  /*change the background color to blue*/
+	font-family: "Times New Romans";  /*change the font family to "Times New Romans"*/
+	font-color: blue;   /*change the font color to white */
+	font-size: 18px; /*change the font size*/
+	margin: 25px 50px 75px 100px; /*change the h1 margin and position*/
+	
+}
+

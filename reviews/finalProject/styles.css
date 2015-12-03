@@ -1,0 +1,56 @@
+/* use this to put borders around things... */
+.crop-img{
+  height:150px;
+  width:80%;
+  margin: auto;
+  margin-bottom: 5%;
+  border: 3px solid;
+  border-radius: 15px;
+ 
+  -webkit-filter: grayscale(100%);
+
+}
+
+#bigImage{
+  height:500px;
+  width:100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border: 3px solid red;
+  border-radius: 15px;
+}
+
+body{
+	color: red;
+	background: black;
+
+}
+
+li{
+	font-size: 150%;
+}
+
+}
+
+h1{
+	text-align: center;
+}
+
+#lowerRow{
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+
+html, body{
+	width: 100%;
+	height: 100%;
+}
+
+#forward, #backward{
+	margin-right: auto;
+    margin-left: auto;
+  
+    }

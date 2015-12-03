@@ -1,0 +1,101 @@
+<!-- This is a first example of using a template -->
+
+<head>
+
+    <!-- include our libraries and css files -->
+
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/handlebars-v3.0.3.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="assignment.js"></script>
+    <script src="AnimalsData.js"></script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="assignment.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- put your HTML here -->
+
+<!-- page tile -->
+<div class="container">
+    <h1>Animals</h1>
+</div>
+
+<!--Menu-->
+<div id="tabMenu" class="nav">
+</div>
+
+
+<!--Main content-->
+<div id="content" class="container-fluid" role="main">
+
+</div>
+
+
+<!-- *** TEMPLATES *** -->
+
+<!-- Class template -->
+<script id="class-template" type="text/x-handlebars-template">
+    <!-- Each animals class represent a navigation tab -->
+    <ul class="nav nav-tabs">
+        {{#each class}}
+        <li  {{#if @first}}class="active"{{/if}}><a href="#" class="tab-link" data-id="{{@index}}">{{name}}</a></li>
+        {{/each}}
+    </ul>
+</script>
+
+<!--Display species template-->
+<script id="species-template" type="text/x-handlebars-template">
+
+    {{#each animals}}
+    <div class="row">
+        <div class="row">
+            <div class="col-xs-12 col-md-3 ">
+                <h3>{{name}}</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-3 col-centered">
+                <a href="#">
+                    <img src="{{image1}}" class="crop-img" data-name="{{name}}" data-description="{{description}}">
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-3 col-centered">
+                <a href="#">
+                    <img src="{{image2}}" class="crop-img" data-name="{{name}}" data-description="{{description}}">
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8 col-md-6">
+                <p class="description">{{description}}</p>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+
+</script>
+
+<!--Photo template-->
+<script id="photo-template" type="text/x-handlebars-template">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <img class="large-img" src="{{src}}" alt=""/>
+
+            <div class="caption">
+                <h3>{{name}}</h3>
+
+                <p>{{description}}</p>
+            </div>
+        </div> <!-- / col -->
+
+    </div> <!-- / row -->
+</script>
+
+
+</body>

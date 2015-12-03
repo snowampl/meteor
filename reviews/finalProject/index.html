@@ -1,0 +1,94 @@
+<!doctype html>
+	<head>
+		<title>Image Gallery</title>
+
+		<!-- import bootstrap -->
+		<link rel="stylesheet"
+			  type="text/css"
+			  href="bootstrap.css"
+		      />
+
+		<!-- import our own stylesheet -->
+		<link rel="stylesheet"
+			  type="text/css"
+			  href="styles.css"
+		      />	
+
+		<!-- import jQuery -->
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+		
+	</head>
+	<body>
+
+	<div class="container">
+		<h1   id="heading" onclick="alertme();">Image Gallery</h1>
+
+		<div>
+			<ul>
+					<li>Click the forward button to display the next image or click the backward button 
+					to display previous image!</li>
+					<li>You can also click on a thumbnail image to display it in the bigger size!</li>
+					<li>In addition, you can click on the automatically displayed images to pause the automatic 
+						displaying or to resume the automatic displaying of images.</li>
+
+			</ul>
+	
+		</div>
+
+		<!--
+		   These are the thumbnail images.
+		   They pretty much the same as the 
+		   last example from the previous
+		   module, except I have added an
+		   id to each image which includes
+		   the number of that image.
+		-->
+		<div class="row">
+			<div class="col-md-4">
+				<img id="image1" 
+				 class="crop-img" src="http://www.emptynestny.com/wp-content/uploads/2015/09/city-mercer-street-soho-new-york-hd-wallpaper-12912.jpg" onclick="makeBig();"/> 
+			</div>
+			<div class="col-md-4">
+				<img id="image2" class="crop-img" src="http://img14.deviantart.net/232d/i/2011/002/1/b/31_st_street_new_york_city_by_singthebodyelectric-d36al2h.jpg" /> 
+			</div>
+			<div class="col-md-4">
+				<img id="image3" class="crop-img" src="http://www.fallenlog.com/data/photos/760_1web_site_reload_23.jpg" /> 
+			</div>
+
+		</div>
+		<!--
+			this is the large image which is
+			on a row of its own. 
+			The code is similar to the last example
+			of the previous module, but I have
+			added a backwards and forwards button
+		-->
+		<div class="row" id="lowerRow">
+			<div class="col-md-1">
+				<button id="backward" onclick="clickBackward();">Backward <</button>
+			</div>
+			<div class="col-md-9">
+				<img onclick="togglePausing()" id="bigImage" src="http://www.emptynestny.com/wp-content/uploads/2015/09/city-mercer-street-soho-new-york-hd-wallpaper-12912.jpg" /> 
+			</div>
+			<div class="col-md-1">
+				<button id="forward" onclick="clickForward();">Forward ></button>
+			</div>
+		</div>
+		
+	</div>
+
+
+
+<!-- import javascript file -->
+		<script type="text/javascript" src="script.js"></script>
+	</body>
+
+</html>
+
+
+
+
+
+
+

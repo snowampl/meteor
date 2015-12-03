@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="assignment.css" rel="stylesheet">
+    <title>Animals</title>
+  </head>
+
+  <body>
+   
+   
+   <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Animals</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#albums-container" data-toggle="tab">List</a></li>
+            <li><a href="#photos-container" data-toggle="tab">Photo Grid</a></li>
+            <li><a href="#slideshow-container" data-toggle="tab">Slideshow</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    
+   <div class="container">
+
+    <br/>
+    <br/>
+    <div id="animal-modals"></div>
+    
+    <div class="tab-content">
+     
+      <div class="tab-pane fade  in active" id="albums-container">
+        <!-- album for each animalClass -->
+        <div id="album"><div class="row"></div></div>
+      </div>
+      
+      <div class="tab-pane fade" id="photos-container">
+        <!-- grid of all photos -->
+        <div class="row">
+          <div id="photo-grid"></div>
+        </div>
+      </div>
+      
+      <div class="tab-pane fade" id="slideshow-container">
+         <!-- Slideshow carousel of all photos -->
+         <div id="slideshow"></div>
+      </div>
+      
+    </div>
+  
+   </div>
+   
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/handlebars-v3.0.3.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="animalsData.js"></script>
+    <script src="assignment.js"></script>
+   
+    <script id="photo-grid-template" type="text/x-handlebars-template">
+      <p>Click a photo to see more details.</p>
+      {{#each animalClass}}
+        {{#each animalSpecies}}
+        <div class="col-md-2">
+          <a type="button" data-toggle="modal" data-target="#{{name}}-modal">
+            <div class="thumbnail">
+              <img src="{{image1}}" class="img-responsive"  alt="{{name}}" />
+            </div>
+          </a>
+        </div>
+        {{/each}}
+      {{/each}}
+    </script>
+    
+    <script id="album-template" type="text/x-handlebars-template">
+      {{#each animalClass}}
+        <div class="col-md-4">
+          <div class="panel panel-default">
+            <div class="panel-heading"><h2 class="panel-title">{{className}}</h2></div>
+            <div class="panel-body">
+              <ul class="list-group">
+                {{#each animalSpecies}}
+                <li class="list-group-item">
+                  <a type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#{{name}}-modal">{{name}}</a>
+                </li>
+                {{/each}}
+              </ul>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </script>
+    
+    <script id="modal-template" type="text/x-handlebars-template">
+      {{#each animalClass}}
+        {{#each animalSpecies}}
+        <div class="modal fade" id="{{name}}-modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 modal-title>{{name}}</h2>
+              </div>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <img src="{{image1}}" class="img-responsive"  alt="{{name}}" />
+                    </div>
+                    <div class="col-md-6">
+                      <img src="{{image2}}" class="img-responsive"  alt="{{name}}" />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p>{{description}}</p>
+                    </div>
+                  </div>
+                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      {{/each}}
+    </script>
+    
+    <script id="slideshow-template" type="text/x-handlebars-template">
+     
+      <div id="slideshow-carousel" class="carousel slide" data-ride="carousel">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+         {{#each animalClass}}
+            {{#each animalSpecies}}
+              <div class="item">
+                <img class="carousel-image" src="{{image1}}" alt="{{name}}"/>
+                <div class="carousel-caption">
+                  <h2>{{name}}</h2>
+                  <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#{{name}}-modal">More Info</a>
+                </div>
+              </div>
+            {{/each}}
+          {{/each}}
+        </div>
+        
+        <!-- controls -->
+        <a class="left carousel-control" href="#slideshow-carousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+        <a class="right carousel-control" href="#slideshow-carousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+      </div>
+    </script>
+    
+  </body>
+</html>

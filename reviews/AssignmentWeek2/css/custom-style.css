@@ -1,0 +1,85 @@
+
+body {
+  background-color: #FFFFFC;
+}
+footer {
+  margin-bottom: 50px;
+}
+h1 {
+  text-align: center;
+  font-family: Georgia;
+}
+h3 {
+  text-align: center;
+  font-family: Georgia;
+}
+hr {
+  display:block;
+  margin: 15px 350px 25px 350px;
+  border-width: 3px;
+  border-style:groove;
+}
+a.task-link {
+  margin-top: 25px 0px 10px 300px;
+  font-family: Georgia;
+  color: black;
+  font-size: 20px;
+}
+.breadcrumb {
+  background-color: inherit;
+  text-align: center;
+  list-style: none;
+  color: black;
+}
+.breadcrumb li a {
+  color: black;
+}
+
+#first-row {
+  padding-top: 25px;
+  padding-left: 125px;
+}
+#img-fido {
+  width: 500px;
+  height: 350px;
+  margin-bottom: 10px;
+}
+p.information {
+   font-family: Georgia;
+   color: black;
+   font-size: 18px;
+   margin-bottom: 10px;
+
+}
+p.icanhelp {
+  margin: 100px 50px 50px 50px;
+  font-family: Georgia;
+  color: black;
+  font-size: 24px;
+  margin-bottom: 10px;
+
+}
+#img-triplets {
+  margin: auto;
+  height: 400px;
+  padding-bottom: 30px;
+}
+#img-ariel, #img-josh, #img-carson {
+  margin: auto;
+  height: 300px;
+  padding-bottom: 30px;
+}
+#img-brett, #img-cassy, #img-doghouse {
+  padding-bottom: 30px;
+}
+#img-doghouse {
+  margin: auto;
+  height: 400px;
+}
+p.description {
+  text-align: center;
+  margin-top:auto;
+  font-family: Georgia;
+  color: black;
+  font-size: 20px;
+}

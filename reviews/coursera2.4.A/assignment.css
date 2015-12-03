@@ -1,0 +1,33 @@
+
+
+.crop-img{
+    max-height:200px;
+    max-width:100%;
+    padding:10;
+}
+
+.large-img{
+    max-width:100%;
+    padding: 10;
+}
+
+.description{
+    padding: 10;
+}
+
+h3{
+    padding: 10;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}

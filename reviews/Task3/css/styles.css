@@ -1,0 +1,43 @@
+/*#button_position {
+	position: absolute;
+	left: 30px;
+}*/
+
+.day-thumbnail {
+	margin-top: 10px;
+	white-space: pre;
+	overflow: hidden;
+	max-height: 150px;
+	height: 150px;
+	border-radius: 10px;
+}
+
+#mainView {
+	margin-top: 10px;
+	white-space: pre
+}
+
+.crop-img {
+  max-height:150px;
+  max-width:100%;
+  margin-bottom: 10px;
+}
+
+.large-img {
+  max-width:100%;
+  margin-top: 10px;
+}
+
+.single-img {
+  max-width:100%;
+  margin-top: 10px;
+}
+
+body {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+p {
+	font-size: 14px;
+	margin-top: 20px;
+}
