@@ -14,6 +14,7 @@
   {{> yield "navbar"}}
   {{> yield "main"}}
   {{> yield "detail"}}
+  {{> yield "search_list"}}
   
 </template>
 
@@ -34,12 +35,37 @@
 	<div class="container">
 		{{#if currentUser}}
 		{{> website_form}}
+		{{> search_form}}
 		{{/if}}
 		{{> website_list}}
+
+		{{#if currentUser}}
+		{{> recommend_list}}
+		{{/if}}
 	</div>
 </template>
 
+<!--template for search word-->
 
+<template name="search_form"> <!-- add new website -->
+	<div id = "search_form">
+	<!--a class="btn btn-default js-toggle-website-form" href="#">
+  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+	</a-->
+	<div id="searchkeyword_form">
+		<form class="js-search-website-form">
+		  <div class="form-group">
+		    <label for="keywords">keywords</label>
+		    <input type="text" class="form-control" id="keywords" placeholder="">
+		  </div>
+
+		  <button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+</div> <!--end of add_form-->
+</template>
+
+<!--add form -->
 
 <template name="website_form"> <!-- add new website -->
 	<div id = "add_form">
@@ -76,6 +102,22 @@
 	</ol>
 </template>
 
+<template name="recommend_list">
+	<ol>
+	{{#each websites}}
+	{{> recommend_item}}
+	{{/each}}
+	</ol>
+</template>
+
+<template name="search_list">
+	<ol>
+	{{#each websites}}
+	{{> website_item}}
+	{{/each}}
+	</ol>
+</template>
+
 <!-- template that displays individual website entries -->
 <template name="website_item">
 <li>
@@ -94,9 +136,24 @@
 	</a>
 	<!-- you will be putting your up and down vote buttons in here! -->
 	<p id="{{_id}}">uprate:{{rating}}</p>
-	<p id="{{_id}}">downrate:{{downrating}}</p>
+	<p id="down{{_id}}">downrate:{{norating}}</p>
 </li>
 </template>
+
+<!-- template that display recommend website entries -->
+
+<template name="recommend_item">
+<li>
+	<a href="{{url}}">{{title}}</a>
+	<p>
+		{{description}}
+	</p>
+	<p> {{_id}} </p>
+	<a href='/websites/{{_id}}'> Detail </a>
+</li>
+</template>
+
+<!--template to show the detail information-->
 
 <template name="detail">
 	
@@ -118,7 +175,7 @@
 	<div id="formdiv">
 		<form class="js-submit-detail">
 		    <label for="comments">Comments</label>
-		    <input type="text" class="form-control" id="comments" placeholder="My Comments">
+		    <input type="text" class="form-control" id="comments" placeholder="My Comments" name="comments">
 		  <button type="submit" class="btn btn-default" data_id = _id>Submit</button>
 		</form>
 	</div>
