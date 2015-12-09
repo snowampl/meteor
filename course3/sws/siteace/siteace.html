@@ -26,6 +26,7 @@
 	      <a class="navbar-brand" href="#">
 	        Site Ace
 	      </a>
+	      
 	    </div>
 	  </div>
 	</nav>
@@ -33,12 +34,13 @@
 
 <template name="main">
 	<div class="container">
+		{{> search_form}}
 		{{#if currentUser}}
 		{{> website_form}}
-		{{> search_form}}
+		
 		{{/if}}
 		{{> website_list}}
-
+		{{> separator_line}}
 		{{#if currentUser}}
 		{{> recommend_list}}
 		{{/if}}
@@ -49,20 +51,11 @@
 
 <template name="search_form"> <!-- add new website -->
 	<div id = "search_form">
-	<!--a class="btn btn-default js-toggle-website-form" href="#">
-  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-	</a-->
-	<div id="searchkeyword_form">
-		<form class="js-search-website-form">
-		  <div class="form-group">
-		    <label for="keywords">keywords</label>
-		    <input type="text" class="form-control" id="keywords" placeholder="">
-		  </div>
-
-		  <button type="submit" class="btn btn-default">Submit</button>
-		</form>
-	</div>
-</div> <!--end of add_form-->
+			<form class="js-search-website-form navbar-form narbar-right">
+			    <input type="text" class="form-control" id="keywords" placeholder="">
+			    <button type="submit" class="btn btn-default">search</button>
+			</form>	
+	</div> <!--end of add_form-->
 </template>
 
 <!--add form -->
@@ -125,8 +118,9 @@
 	<p>
 		{{description}}
 	</p>
-	<p> {{_id}} </p>
-	<a href='/websites/{{_id}}'> Detail </a>
+	<p> Created by: {{createdBy}} </p>
+	<a href='/websites/{{_id}}' onclick="window.open(this.href); return false;"> Detail </a>
+	
 	<a href="#" class="btn btn-default js-upvote">
 		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
 
@@ -148,7 +142,8 @@
 	<p>
 		{{description}}
 	</p>
-	<p> {{_id}} </p>
+	<p> Created by: {{createdBy}} </p>
+	<br>
 	<a href='/websites/{{_id}}'> Detail </a>
 </li>
 </template>
@@ -158,7 +153,7 @@
 <template name="detail">
 	
 	<div class="container js-container">
-		<p> hello world </p>
+
 		
 		<h1> {{title}} </h1>
 		<p> {{description}} </p>
@@ -166,19 +161,32 @@
 		<div class="container js-container">
 
 		{{#each comments}}
-		<p> {{author}}: {{content}}, {{createdBy}}</p>
+		<p> Created by {{author}}: {{content}}, {{createdBy}}</p>
 		
 		{{/each}}
 	
 		
 	</div>
-	<div id="formdiv">
+	<div id="formdiv" class="col-xs-4">
 		<form class="js-submit-detail">
 		    <label for="comments">Comments</label>
-		    <input type="text" class="form-control" id="comments" placeholder="My Comments" name="comments">
-		  <button type="submit" class="btn btn-default" data_id = _id>Submit</button>
+		    <input type="text" class="form-control input-lg" id="comments" placeholder="My Comments" name="comments">
+		  	<button type="submit" class="btn btn-default" data_id = _id>Submit</button>
 		</form>
 	</div>
 
 	
 </template>
+
+<template name = "separator_line">
+
+	<HR width="100%" color="black" SIZE=12 />
+	<p> Web Recommender</p>
+	<br>
+
+</template>
+
+
+
+
+
