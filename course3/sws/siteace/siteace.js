@@ -72,6 +72,16 @@ Router.route('/ends/:keyword', function () {
 
 if (Meteor.isClient) {
 
+	/// accounts config
+
+	Accounts.ui.config({
+	passwordSignupFields: "USERNAME_AND_EMAIL"
+	});
+
+
+
+	/// 
+
 	/////
 	// template helpers 
 	/////
@@ -254,7 +264,7 @@ if (Meteor.isClient) {
 	Template.detail.events({
 		"submit .js-submit-detail": function(event){
 			var userid = this._id;
-			var currentuser = Meteor.userId();
+			var currentuser = Meteor.users.findOne({_id:Meteor.userId()}).username;
 			var content = event.target.comments.value;
 			console.log(userid);
 			console.log(Meteor.userId());
@@ -284,7 +294,8 @@ if (Meteor.isServer) {
     		createdOn:new Date(), 
     		rating:0,
     		norating:0,
-    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ]
+    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ],
+    		createdBy: Meteor.users.findOne({_id:Meteor.userId()}).username
     	});
 			return(result);
 		}
