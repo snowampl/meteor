@@ -1,8 +1,7 @@
 
 
-Websites = new Mongo.Collection("websites");
-Userwords = new Mongo.Collection("userwords");
-
+if(Meteor.isClient)
+{
 Router.configure({
   layoutTemplate: 'ApplicationLayout'
 });
@@ -34,7 +33,7 @@ Router.route('/websites/:_id', function () {
   this.render('detail', {
     to:"detail" ,
     data:function(){
-    	var website_id = this.params._id
+    	var website_id = this.params._id;
     	var last_element = Websites.findOne({_id:website_id});
     	
       return last_element;
@@ -70,7 +69,7 @@ Router.route('/ends/:keyword', function () {
 
 
 
-if (Meteor.isClient) {
+
 
 	/// accounts config
 
@@ -128,15 +127,15 @@ if (Meteor.isClient) {
 			var total = words.length-1;
 			if(words.length <= 1)
 			{
-				webs = Websites.find({"description":{$regex: words[0]}});
+				webs = Websites.find({"description":{$regex: words[0]}}, {sort:{rating:-1}, limit:6});
 			} 
 			else{
 				if(words.length <=2)
 				{
-					var webs = Websites.find({"$or": [{"description":{$regex: words[0]}}, {"description":{$regex: words[1]}}]});
+					var webs = Websites.find({"$or": [{"description":{$regex: words[0]}}, {"description":{$regex: words[1]}}]}, {sort:{rating:-1}, limit:6});
 				}
 				else{
-					var webs = Websites.find({"$or": [{"description":{$regex: words[total]}}, {"description":{$regex: words[total-1]}},{"description":{$regex: words[total-2]}}]});
+					var webs = Websites.find({"$or": [{"description":{$regex: words[total]}}, {"description":{$regex: words[total-1]}},{"description":{$regex: words[total-2]}}]}, {sort:{rating:-1}, limit:6});
 				}
 			}
 
@@ -173,28 +172,32 @@ if (Meteor.isClient) {
 		"submit .js-search-website-form":function(event){
 
 			var keyword = event.target.keywords.value;
-			if(Userwords.findOne({_id: Meteor.userId()})){
+			if(Meteor.user())
+			{
+				if(Userwords.findOne({_id: Meteor.userId()})){
 
-				if (Userwords.findOne({"words": keyword})){ 
+					if (Userwords.findOne({"words": keyword})){ 
 
-				console.log("not updated"); 
-			}
+					console.log("not updated"); 
+					}
 
+					else{
+
+						Userwords.update({_id:Meteor.userId()}, {$push:{words: keyword}});
+						console.log("update the newword");
+						
+					}
+				}
 				else{
+					console.log("here here here here");
+					Userwords.insert({_id: Meteor.userId(), words:[keyword]});
 
-					Userwords.update({_id:Meteor.userId()}, {$push:{words: keyword}});
-					console.log("update the newword");
-					
 				}
 			}
-			else{
-				Userwords.insert({_id: Meteor.userId(), words:[keyword]});
-
-			}
-			console.log(Userwords.findOne({_id:Meteor.userId()}).words);
-			console.log("here:"+keyword);
+			
 			event.preventDefault();
 			window.open(Router.url('search.show',{keyword:keyword},{}));
+			return false;
 			
 
 		}
@@ -273,36 +276,36 @@ if (Meteor.isClient) {
 			return false;
 		}
 	})
+
 }
-
-
-if (Meteor.isServer) {
-	// start up function that creates entries in the Websites databases.
+if(Meteor.isServer){
 
 	Meteor.methods({
-		geturl: function(url){
-			var result = extractMeta(url);
-			console.log(result);
-			if(!result.title){
-				result.title = url;
-				result.description = "There is no description on this website";
-			}
-			Websites.insert({
-    		title: result.title, 
-    		url:result.url, 
-    		description:result.description, 
-    		createdOn:new Date(), 
-    		rating:0,
-    		norating:0,
-    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ],
-    		createdBy: Meteor.users.findOne({_id:Meteor.userId()}).username
-    	});
-			return(result);
-		}
-	});
+        geturl: function(url){
+            var result = extractMeta(url);
+            console.log(result);
+            if(!result.title){
+                result.title = url;
+                result.description = "There is no description on this website";
+            }
+            result.description = result.title+":"+result.description;
+            Websites.insert({
+            title: result.title, 
+            url:result.url, 
+            description: result.description, 
+            createdOn:new Date(), 
+            rating:0,
+            norating:0,
+            comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ],
+            createdBy: Meteor.users.findOne({_id:Meteor.userId()}).username
+        });
+            return(result);
+        }
+    });
 
-  Meteor.startup(function () {
+     Meteor.startup(function () {
     // code to run on server at startup
+
 
     if (!Websites.findOne()){
 
@@ -314,7 +317,8 @@ if (Meteor.isServer) {
     		createdOn:new Date(), 
     		rating:0,
     		norating:0,
-    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ]
+    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ],
+    		createdBy:"aa"
     	});
     	 Websites.insert({
     		title:"University of London", 
@@ -323,7 +327,8 @@ if (Meteor.isServer) {
     		createdOn:new Date(),
     		rating:0,
     		norating:0,
-    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ]
+    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ],
+    		createdBy:"aa"
     	});
     	 Websites.insert({
     		title:"Coursera", 
@@ -332,7 +337,8 @@ if (Meteor.isServer) {
     		createdOn:new Date(),
     		rating:0,
     		norating:0,
-    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ]
+    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ],
+    		createdBy:"aa"
     	});
     	Websites.insert({
     		title:"Google", 
@@ -341,7 +347,8 @@ if (Meteor.isServer) {
     		createdOn:new Date(),
     		rating:0,
     		norating:0,
-    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ]
+    		comments:[{author: "aa", content: "blabla", createdBy: new Date()},{author: "bb", content: "blabla", createdBy: new Date()} ],
+    		createdBy:"aa"
 
     	});
     }
@@ -349,3 +356,5 @@ if (Meteor.isServer) {
 
   );
 }
+
+

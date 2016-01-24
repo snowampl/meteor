@@ -1,0 +1,41 @@
+<head>
+  <title>disease_data_viz</title>
+  <script src="vis.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+  {{> disease_viz}}
+</div>	
+</body>
+
+<template name="disease_viz">
+<div class="row">
+	<div class="col-md-6">
+			{{> disease_viz_controls}}
+			
+	</div>
+	<div class="col-md-6">
+			{{> disease_vizjs}}
+	</div>
+</div>
+
+</template>
+
+<template name="disease_viz_controls">
+	<form>
+		<!-- list of available single features -->
+		The information is below
+		<br/>
+		
+		<button class="btn js-show-stats">Year Distribution</button>
+		<button class="btn js-show-timeline">Disease Distribution</button>
+		<button class="btn js-show-map"> Disease on Map distribution </button>
+	</form>
+</template>	
+
+
+<template name="disease_vizjs">
+	<div id="visjs"></div>
+</template>

@@ -1,0 +1,134 @@
+<head>
+  <title>mathfun</title>
+  <script src="vis.js"></script>
+</head>
+
+<body>
+
+</body>
+
+
+<template name="layout">
+	{{> navbar}}
+	{{> yield}}
+</template>
+
+<template name="navbar">
+<nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">This button displays the navigation bar</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+          <div class="collapse navbar-collapse" id="navbar-collapse-1" role="navigation">
+            <ul class="nav navbar-nav navbar-left">
+              <li>
+                <a href="/"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> MathFunVis </a>
+              </li>
+              <li>
+                <a href="/math"> <span class="fa fa-thumbs-o-up" aria-hidden="true"></span> Math Functions</a>
+              </li>
+              <li>
+                <a href="/users"> <span class="fa fa-envelope-o" aria-hidden="true"></span> Users' behaviour</a>
+              </li>
+            
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              {{> loginButtons}}
+            </ul>
+          </div>
+        </div>
+      </nav>
+</template>
+<!-- top level template for the nav bar -->
+
+
+<template name="home">
+  <div class="container">
+      {{> frontpage}}
+  </div>
+</template>
+
+<template name="frontpage">
+	<div class="container frontpage-container">
+		<div class="row">
+			
+				<div id="about" class="col-xs-12 col-md-12">
+					<p class="text-front-page">Hi, welcome to math functions visualization webpage. This webpage show you <a href="/math">how parameters affects a math function.</a></p>
+					<div class="separate"></div>
+					<p class="text-front-page"> We also collect <a href="/users">users behaviour data.</a> It shows the click quantity along time axis('2015-12-01' and '2015-12-12' are an example) and the jumping frequency between these functions, for instance that how frequently Users jump from N=1 to N=5.</p>
+				</div>
+		</div>
+	</div>
+</template>
+
+<template name="math_function">
+<div class="row">
+	<div class="col-md-4">
+			{{> math_function_controls}}
+			
+	</div>
+	<div class="col-md-8">
+			{{> mathfun_vis}}
+	</div>
+</div>
+
+</template>
+
+<template name="users_behaviour">
+	<div class="row">
+	<div class="col-md-4 col-xd-12">
+			{{> users_stats}}
+			
+	</div>
+	<div class="col-md-8 col-xd-12">
+			{{> mathfun_vis}}
+	</div>
+</div>
+</template>
+
+<template name="math_function_controls">
+	
+		<form class="form-inline" role="form">
+			<div id="form-function-control" class="form-group">
+			<!-- list of available single features -->
+			<h3>Math Function:</h3>
+			<br>
+			 <h5>z=(Math.sin(x*N/50) * Math.cos(y*N/50) * 50 + 50)</h5>
+			<div class="separate"> </div>
+			<div id="form-dropdown" class="form-group">
+				<label for="js-select-form">Select Parameters for N:</label>
+				<select class="js-select-function" id="js-select-form" >
+					{{#each mathfunction}}
+					<option value="{{id}}">{{id}}</option>
+					{{/each}}
+				</select>
+			</div>
+			<button class="btn btn-primary js-show-graph" >functionVis</button>
+			</div>
+		</form>
+	
+</template>	
+
+
+<template name="users_stats">
+	<div class="btn-group">
+		<label>The times of each parameter(N=1..N=5) checked by users</label>
+		<button class="btn btn-primary btn1 js-show-users">users_stats</button>
+	</div>
+	<div class="separate"></div>
+	<div class="btn-group">
+		<label>The jumping frequency from one parameter to other</label>
+		<button class="btn btn-primary btn1 js-show-network">users_jumping_stats</button>
+	</div>
+	<br>
+</template>
+
+<template name="mathfun_vis">
+	<div id="visjs"></div>
+</template>

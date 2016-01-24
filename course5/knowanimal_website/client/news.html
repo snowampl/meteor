@@ -1,0 +1,56 @@
+<template name="news">
+  <div class="container">
+  		{{> news_item}}
+  		 {{#if currentUser}}
+		  	  {{> news_form}}
+		{{/if}}
+      
+  </div>
+</template>
+
+<template name="news_item">
+
+	<div class="row">
+  {{#each news_item}}
+  <div class="col-xs-12 col-md-6" id="{{_id}}">
+  	<div class="thumbnail">
+  		<h3> {{title}} </h3>
+  	 	<a href=""><img class="newsimage js-image thumbnail-img"  src="{{image_src}}" /></a>
+  			
+  		<p>{{description}}</p> 
+  		{{#if currentUser}}
+  		<a class="deleteevent"> Delete </a>
+         {{/if}}
+     </div>
+  
+    </div> <!-- / col -->
+    
+  {{/each}}
+</div> <!-- / row -->
+</template>
+
+<template name="news_form"> <!-- add new website -->
+	<div id = "add_form">
+	<a class="btn btn-default js-toggle-website-form" href="#">
+  		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+
+	</a>
+	<div id="news_form" class="hidden_div">
+		<form class="js-save-news-form">
+		  <div class="form-group">
+		    <label for="title">Title</label>
+		    <input type="text" class="form-control" id="title" placeholder="animal">
+		  </div>
+		  <div class="form-group">
+		    <label for="image_src">Image_source</label>
+		    <input type="text" class="form-control" id="src" placeholder="***.jpeg">
+		  </div>
+		  <div class="form-group">
+		    <label for="description">Add Description</label>
+		    <input type="text" class="form-control" id="des" placeholder="http://www.mysite.com">
+		  </div>
+		  <button type="submit" class="btn btn-default">Submit</button>
+		</form>
+	</div>
+</div> <!--end of add_form-->
+</template>

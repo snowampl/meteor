@@ -37,13 +37,18 @@
 		{{> search_form}}
 		{{#if currentUser}}
 		{{> website_form}}
-		
 		{{/if}}
-		{{> website_list}}
-		{{> separator_line}}
-		{{#if currentUser}}
-		{{> recommend_list}}
-		{{/if}}
+		<div class="row">
+			<div class="col-xs-12 col-md-8">
+				{{> website_list}}
+			</div>
+			<div class="col-xs-6 col-md-4" id = "webrecommended">
+				<p> Web Recommended </p>
+				{{#if currentUser}}
+				{{> recommend_list}}
+				{{/if}}
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -64,6 +69,7 @@
 	<div id = "add_form">
 	<a class="btn btn-default js-toggle-website-form" href="#">
   		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+
 	</a>
 	<div id="website_form" class="hidden_div">
 		<form class="js-save-website-form">
@@ -71,15 +77,6 @@
 		    <label for="url">Site address</label>
 		    <input type="text" class="form-control" id="url" placeholder="http://www.mysite.com">
 		  </div>
-		  <div class="form-group">
-		    <label for="title">Title</label>
-		    <input type="text" class="form-control" id="title" placeholder="Mysite">
-		  </div>
-		    <div class="form-group">
-		    <label for="description">Description</label>
-		    <input type="text" class="form-control" id="description" placeholder="I found this site really useful for ...">
-		  </div>
-
 		  <button type="submit" class="btn btn-default">Submit</button>
 		</form>
 	</div>
@@ -88,19 +85,23 @@
 
 <!-- template that displays several website items -->
 <template name="website_list">
-	<ol>
-	{{#each websites}}
-	{{>website_item}}
-	{{/each}}
-	</ol>
+	<div id="websitelist" >
+		<ol>
+		{{#each websites}}
+		{{>website_item}}
+		{{/each}}
+		</ol>
+	</div>
 </template>
 
 <template name="recommend_list">
-	<ol>
-	{{#each websites}}
-	{{> recommend_item}}
-	{{/each}}
-	</ol>
+	<div id="recommendlist">
+		<ol>
+		{{#each websites}}
+		{{> recommend_item}}
+		{{/each}}
+		</ol>
+	</div>
 </template>
 
 <template name="search_list">
@@ -118,15 +119,14 @@
 	<p>
 		{{description}}
 	</p>
-	<p> Created by: {{createdBy}} </p>
 	<a href='/websites/{{_id}}' onclick="window.open(this.href); return false;"> Detail </a>
-	
+	<p> Created by: {{createdBy}} and Created on: {{createdOn}} </p>
 	<a href="#" class="btn btn-default js-upvote">
-		<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 
 	</a>
 	<a href="#" class="btn btn-default js-downvote">
-		<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span>
+		<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
 	</a>
 	<!-- you will be putting your up and down vote buttons in here! -->
 	<p id="{{_id}}">uprate:{{rating}}</p>
@@ -139,12 +139,10 @@
 <template name="recommend_item">
 <li>
 	<a href="{{url}}">{{title}}</a>
-	<p>
-		{{description}}
-	</p>
-	<p> Created by: {{createdBy}} </p>
 	<br>
 	<a href='/websites/{{_id}}'> Detail </a>
+	<p> Created by: {{createdBy}} </p>
+	<br>
 </li>
 </template>
 

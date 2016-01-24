@@ -1,0 +1,10 @@
+{year:Year,zipcode:ZIP Code,cause:Causes of Death,count:Count}
+{year:1999,zipcode:90001,cause:SUI,count:0}
+{year:1999,zipcode:90001,cause:HYP,count:0}
+{year:1999,zipcode:90001,cause:NEP,count:0}
+{year:1999,zipcode:90002,cause:HYP,count:0}
+{year:1999,zipcode:90002,cause:NEP,count:0}
+{year:1999,zipcode:90003,cause:HYP,count:0}
+{year:1999,zipcode:90003,cause:NEP,count:0}
+{year:1999,zipcode:90004,cause:HYP,count:0}
+{year:1999,zipcode:90004,cause:NEP,count:0}

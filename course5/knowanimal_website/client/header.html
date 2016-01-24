@@ -1,0 +1,32 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title> Teach kids to know animals</title>
+</head>
+<template name="header">
+  
+  <div class="navbar navbar-default" role="navigation">
+    
+    <div class="container">
+    
+      <div class="navbar-header">
+        <a href="/" class=" navbar-brand">Knowing Animals</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li>
+            <a href="/news">Pictures</a>
+          </li>
+          <li>
+            <a href="{{blogPathFor "blogIndex"}}">Knowledge</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {{> loginButtons}}
+        </ul>
+      </div>
+   
+    </div>
+  
+</div>
+</template>
